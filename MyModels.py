@@ -31,7 +31,6 @@ class My_BPNN():
 
     # 訓練模型函數
     def train(self, X_train, Y_train, epochs, learning_rate):
-        # X_train = X_train.reshape(X_train.shape[0], X_train.shape[1])
         num_input = X_train.shape[1]
         num_output = Y_train.shape[1]
         num_hidden = 3
@@ -48,7 +47,6 @@ class My_BPNN():
 
     # 測試模型函數
     def predict(self, X_test, W1, W2):
-        # X_test = X_test.reshape(X_test.shape[0], X_test.shape[1])
         _, Y_predict = self.forward(X_test, W1, W2)
         return Y_predict
 
@@ -151,96 +149,3 @@ class My_GRU():
             plt.legend()
             plt.show()
         return self.model
-    
-
-# *********
-# Example *
-# *********
-# --------------------------------------------------------------------------
-# BPNN
-# --------------------------------------------------------------------------
-# # 傳統方法的參考資料須調整資料維度
-# X_train = X_train.reshape(X_train.shape[0], X_train.shape[1])
-# X_test = X_test.reshape(X_test.shape[0], X_test.shape[1])
-# Y_train = Y_train.ravel()
-# Y_test = Y_test.ravel()
-
-# # 創建模型
-# model = My_BPNN()
-
-# # 訓練模型
-# W1, W2 = model.train(X_train, Y_train, epochs, lr)
-
-# # 預測
-# Y_train_predict = model.predict(X_train, W1, W2)
-# Y_predict = model.predict(X_test, W1, W2)
-
-# --------------------------------------------------------------------------
-# SVM
-# --------------------------------------------------------------------------
-# # 傳統方法的參考資料須調整資料維度
-# X_train = X_train.reshape(X_train.shape[0], X_train.shape[1])
-# X_test = X_test.reshape(X_test.shape[0], X_test.shape[1])
-# Y_train = Y_train.ravel()
-# Y_test = Y_test.ravel()
-
-# # 創建模型
-# model = My_SVM()
-
-# # 訓練模型
-# model = model.train(X_train, Y_train)
-
-# # 預測
-# Y_train_predict = model.predict(X_train)
-# Y_predict = model.predict(X_test)
-
-# --------------------------------------------------------------------------
-# CNN
-# --------------------------------------------------------------------------
-# # 創建模型
-# model = My_CNN(steps, features)
-
-# # 訓練模型
-# model = model.train(X_train, Y_train, X_test, Y_test, lr, loss_fn, epochs, batch_size)
-
-# # 儲存模型
-# model.save(weights_path)
-# print('Training weights saved in ' + weights_path)
-
-# # 預測
-# Y_train_predict = model.predict(X_train) # 以訓練資料預測
-# Y_predict = model.predict(X_test)
-
-# --------------------------------------------------------------------------
-# LSTM
-# --------------------------------------------------------------------------
-# # 創建模型
-# model = My_LSTM(steps, features)
-
-# # 訓練模型
-# model = model.train(X_train, Y_train, X_test, Y_test, lr, loss_fn, epochs, batch_size)
-
-# # 儲存模型
-# model.save(weights_path)
-# print('Training weights saved in ' + weights_path)
-
-# # 預測
-# Y_train_predict = model.predict(X_train) # 以訓練資料預測
-# Y_predict = model.predict(X_test)
-
-# --------------------------------------------------------------------------
-# GRU
-# --------------------------------------------------------------------------
-# # 創建模型
-# model = My_GRU(steps, features)
-
-# # 訓練模型
-# model = model.train(X_train, Y_train, X_test, Y_test, lr, loss_fn, epochs, batch_size)
-
-# # 儲存模型
-# model.save(weights_path)
-# print('Training weights saved in ' + weights_path)
-
-# # 預測
-# Y_train_predict = model.predict(X_train) # 以訓練資料預測
-# Y_predict = model.predict(X_test)

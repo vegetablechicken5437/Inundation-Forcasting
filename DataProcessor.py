@@ -84,13 +84,13 @@ def reorder_events(events, event_order):
 
     return events, event_order, boundary, split_boundary
 
-def convert_negative_to_zero(data):
+def neg2zero(data):
     return np.array([max(0, num) for num in data], dtype=np.float32)
 
-def get_eventWithMaxVal(Y, boundaries):
+def get_evMaxVal(Y, boundaries):
     indexOfMaxVal = list(Y).index(np.max(Y)) # 計算 event with max value
     for i in range(len(boundaries[0])):
         if indexOfMaxVal < boundaries[0][i]:
-            eventWithMaxVal = i+1
+            evMaxVal = i+1
             break
-    return eventWithMaxVal
+    return evMaxVal
