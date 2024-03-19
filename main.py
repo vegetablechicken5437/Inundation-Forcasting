@@ -1,18 +1,19 @@
 import DataProcessor as dp
-from MyModels import My_LSTM
+from MyModels import My_LSTM, My_SVM
 import PlotUtils as pltUT
 import RES_Gen
 import IndexProcessor as idp
 import os
 
 # 檔案、資料夾路徑參數
+useModel = 'SVM'
 AD_FILE = 'data/AD.xlsx'
 IOLAG_FILE = 'data/IOLag.xlsx'   
 SD_FILE = 'data/SD.xlsx'                                   # 資料檔案路徑
 WEIGHTS_FOLDER = 'weights/'                                # 權重檔的資料夾路徑
-OUTPUT_FOLDER = 'outputs/'                                 # 輸出結果的資料夾路徑
-HYDROGRAPH_FOLDER = 'outputs/Hydrographs/'                 # 歷線圖的資料夾路徑
-SCATTER_PLOT_FOLDER = 'outputs/Scatter_Plots/'             # 散點圖的資料夾路徑
+OUTPUT_FOLDER = f'outputs/{useModel}/'                                 # 輸出結果的資料夾路徑
+HYDROGRAPH_FOLDER = OUTPUT_FOLDER + 'Hydrographs/'                 # 歷線圖的資料夾路徑
+SCATTER_PLOT_FOLDER = OUTPUT_FOLDER + 'Scatter_Plots/'             # 散點圖的資料夾路徑
 RES_train_path = OUTPUT_FOLDER + 'RES-train.xlsx'
 RES_test_path = OUTPUT_FOLDER + 'RES-test.xlsx'
 Index_path = OUTPUT_FOLDER + 'Index.xlsx'
@@ -52,6 +53,13 @@ for i in range(num_events):
     print('\n[第 %d/%d 次訓練]' %(i+1, num_events))
     print('▶ 以第 ' + (', '.join(str(x) for x in sorted(event_order[:-1]))) + ' 場事件為訓練資料，以第 ' + str(event_order[-1]) + ' 場事件為測試資料\n')
 
+    # # SVM
+    # X_train = X_train.reshape(X_train.shape[0], X_train.shape[1])
+    # X_test = X_test.reshape(X_test.shape[0], X_test.shape[1])
+    # model = My_SVM()
+    # model = model.train(X_train, Y_train)
+
+    # LSTM
     # 創建模型
     model = My_LSTM(X_train.shape[1], X_train.shape[2])
     # 訓練模型
